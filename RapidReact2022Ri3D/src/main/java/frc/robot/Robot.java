@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -19,6 +20,10 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
+
+  private final XboxController m_logitech = new XboxController(Variables.CONTROLLER_LOGITECH);
+
+  private final DriveTrain m_drive = new DriveTrain();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -78,11 +83,16 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    // drive the robot
+    m_drive.drivePercent(m_logitech.getLeftY(), m_logitech.getRightY());
+  }
 
   /** This function is called once when the robot is disabled. */
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+    m_drive.commandStop();
+  }
 
   /** This function is called periodically when disabled. */
   @Override
