@@ -4,8 +4,10 @@
 
 package frc.robot;
 
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -21,7 +23,11 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
-  private final XboxController m_logitech = new XboxController(Variables.CONTROLLER_LOGITECH);
+  private final ShuffleboardTab drivetab = Shuffleboard.getTab("Drive");
+  private NetworkTableEntry leftInput = drivetab.add("Left Speed", 0).getEntry();
+  private NetworkTableEntry rightInput = drivetab.add("Right Speed", 0).getEntry();
+
+  // private final XboxController m_logitech = new XboxController(Variables.CONTROLLER_LOGITECH);
 
   private final DriveTrain m_drive = new DriveTrain();
 
@@ -84,8 +90,12 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
+    double leftSpeed = leftInput.getDouble(0);
+    double rightSpeed = rightInput.getDouble(0);
+
     // drive the robot
-    m_drive.drivePercent(m_logitech.getLeftY(), m_logitech.getRightY());
+    m_drive.drivePercent(leftSpeed, rightSpeed);
+    // m_drive.drivePercent(m_logitech.getLeftY(), m_logitech.getRightY());
   }
 
   /** This function is called once when the robot is disabled. */
