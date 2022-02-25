@@ -21,7 +21,7 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
-  private final XboxController m_logitech = new XboxController(Variables.CONTROLLER_LOGITECH);
+  private final XboxController m_xbox = new XboxController(Variables.CONTROLLER_XBOX);
 
   private final DriveTrain m_drive = new DriveTrain();
 
@@ -85,7 +85,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     // drive the robot
-    m_drive.drivePercent(m_logitech.getLeftY(), m_logitech.getRightY());
+    m_drive.drivePercent(m_xbox.getLeftY(), m_xbox.getRightY());
   }
 
   /** This function is called once when the robot is disabled. */

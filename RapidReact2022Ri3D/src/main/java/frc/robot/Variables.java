@@ -4,16 +4,16 @@
 
 package frc.robot;
 
-/** Add your docs here. */
+/** A class containing variable values (ie ports for controllers or values associated to the robot). */
 public class Variables {
     // Controller IDs
-    public static final int CONTROLLER_LOGITECH = 0;
+    public static final int CONTROLLER_XBOX = 0;
 
     // Motor controller IDs
     public static final int SPARK_DRIVELEFT = 0;
     public static final int SPARK_DRIVERIGHT = 1;
 
     // Motor controller Inverted
-    public static final boolean INVERTED_DRIVELEFT = false;
+    public static final boolean INVERTED_DRIVELEFT = true;
     public static final boolean INVERTED_DRIVERIGHT = false;
 }
