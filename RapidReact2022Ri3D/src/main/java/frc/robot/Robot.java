@@ -24,6 +24,7 @@ public class Robot extends TimedRobot {
   private final XboxController m_xbox = new XboxController(Variables.CONTROLLER_XBOX);
 
   private final DriveTrain m_drive = new DriveTrain();
+  private final Tray m_tray = new Tray();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -86,6 +87,11 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     // drive the robot
     m_drive.drivePercent(m_xbox.getLeftY(), m_xbox.getRightY());
+
+    // determine where to move the gate on the tray to
+    if (m_xbox.getLeftBumper()) m_tray.lowerGate();
+    else if (m_xbox.getRightBumper()) m_tray.raiseGate();
+    else if (m_xbox.getAButton()) m_tray.positionGate(0.0); // half way
   }
 
   /** This function is called once when the robot is disabled. */

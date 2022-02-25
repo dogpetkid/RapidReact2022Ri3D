@@ -12,6 +12,8 @@ public class Variables {
     // Motor controller IDs
     public static final int SPARK_DRIVELEFT = 0;
     public static final int SPARK_DRIVERIGHT = 1;
+    public static final int TRAY_SERVO_1 = 2;
+    public static final int TRAY_SERVO_2 = 3;
 
     // Motor controller Inverted
     public static final boolean INVERTED_DRIVELEFT = true;
