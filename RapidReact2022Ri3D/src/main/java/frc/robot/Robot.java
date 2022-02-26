@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -24,6 +25,7 @@ public class Robot extends TimedRobot {
   private final XboxController m_xbox = new XboxController(Variables.CONTROLLER_XBOX);
 
   private final DriveTrain m_drive = new DriveTrain();
+  private final Tray m_tray = new Tray();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -86,6 +88,11 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     // drive the robot
     m_drive.driveArcade(m_xbox.getLeftY(), -m_xbox.getRightX(), Variables.INPUT_SQUARED); // take the negative of the X input because pushing right is negative
+
+    // command the servo based off of buttons
+    if (m_xbox.getAButton()) m_tray.setPercent(Variables.TRAY_OPEN);
+    else if (m_xbox.getBButton()) m_tray.setPercent(Variables.TRAY_CLOSED);
+    else if (m_xbox.getXButton()) m_tray.setPercent(m_xbox.getRightTriggerAxis());
   }
 
   /** This function is called once when the robot is disabled. */
