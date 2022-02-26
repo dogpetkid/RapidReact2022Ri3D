@@ -9,6 +9,9 @@ public class Variables {
     // Controller IDs
     public static final int CONTROLLER_XBOX = 0;
 
+    // Control
+    public static final boolean INPUT_SQUARED = true;
+
     // Motor controller IDs
     public static final int SPARK_DRIVELEFT = 0;
     public static final int SPARK_DRIVERIGHT = 1;

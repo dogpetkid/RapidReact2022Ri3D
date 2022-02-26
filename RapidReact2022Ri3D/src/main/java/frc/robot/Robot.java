@@ -85,7 +85,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     // drive the robot
-    m_drive.drivePercent(m_xbox.getLeftY(), m_xbox.getRightY());
+    m_drive.driveArcade(m_xbox.getLeftY(), -m_xbox.getRightX(), Variables.INPUT_SQUARED); // take the negative of the X input because pushing right is negative
   }
 
   /** This function is called once when the robot is disabled. */
